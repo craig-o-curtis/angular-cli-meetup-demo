@@ -8,8 +8,16 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
-        { "glob": "**/*", "input": "./assets/", "output": "./assets/" },
-        { "glob": "favicon.ico", "input": "./assets/", "output": "./" }
+        {
+  "glob": "**/*",
+  "input": "./assets/",
+  "output": "./assets/"
+},
+        {
+  "glob": "favicon.ico",
+  "input": "./assets/",
+  "output": "./"
+}
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -53,6 +61,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }
