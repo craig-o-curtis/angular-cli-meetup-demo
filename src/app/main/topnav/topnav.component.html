@@ -1,32 +1,5 @@
-
-
-  <!-- <div><ul>
-    <li><h2><a [routerLink]=”[‘/]”>HOME</a></h2></li>
-    <li><h2><a [routerLink]=”[‘/home]”>HOME</a></h2></li>
-    <li><h2><a [routerLink]=”[‘/blog’]”>BLOG</a></h2></li>
-  </ul></div> -->
-
-  <!-- <a routerLink="/">HOME</a>
-  <br />
-  <a routerLink="/blog"></a> -->
-
-  <a [routerLink]="['/']">HOME</a>
-  <br />
-  <a [routerLink]="['/blog']">BLOG</a>
-  <br />
-  <a [routerLink]="['/dashboard']">DASHBOARD</a>
-<!--
-  <div>
-    <ul>
-      <li>
-        <h2>
-          <a href routerLink=”/”>HOME</a>
-        </h2>
-      </li>
-      <li>
-        <h2>
-          <a href routerLink=”/blog”>BLOG</a>
-        </h2>
-      </li>
-    </ul>
-  </div> -->
+<md-toolbar color="primary">
+  <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
+  <button md-raised-button color="primary" [routerLink]="['/blog']">Blog<md-icon>list</md-icon></button>
+  <button md-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard<md-icon>dashboard</md-icon></button>
+</md-toolbar>

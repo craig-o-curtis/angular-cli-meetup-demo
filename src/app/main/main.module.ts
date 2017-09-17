@@ -1,3 +1,4 @@
+import { SharedModule } from '../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +13,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
   imports: [
     CommonModule,
     MainRoutingModule,
+    SharedModule,
     HomeModule,
     BlogModule,
     TopnavModule,

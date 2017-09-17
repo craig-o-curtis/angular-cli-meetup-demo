@@ -370,4 +370,76 @@ Note - Current bug - default generates css file, need to specify with style flag
   <craigc-repos></craigc-repos>
   ```
 
+## Commit Step-07-Angular-Material
 
+1. Install Angular Materia
+
+  ```bash
+  npm install --save @angular/material@latest
+  npm install --save @angular/cdk@latest
+  npm install --save material-design-icons
+  ng -v // check version (4.4.1)
+  npm install --save @angular/animations@4.4.1
+  ```
+2. Generate a SharedModule to house MaterialModule
+
+  ```bash
+  ng g m shared -d
+  ng g m shared -m app
+  ```
+
+3. Manually add BroswerAnimationsModule, export this and MaterialModule
+  // shared.module.ts
+  ```ts
+  import { NgModule } from '@angular/core';
+  import { CommonModule } from '@angular/common';
+  import { MaterialModule } from '@angular/material';
+  import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+  @NgModule({
+    imports: [
+      CommonModule,
+      MaterialModule,
+      BrowserAnimationsModule
+    ],
+    exports: [
+      MaterialModule,
+      BrowserAnimationsModule
+    ],
+    declarations: []
+  })
+  export class SharedModule { }
+  ```
+
+4. Import SharedModule into topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts
+  
+  // topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts
+  ```ts
+  import { SharedModule } from '../../shared/shared.module';
+  ...
+  imports: [
+   	...
+   	SharedModule,
+	],
+  ```
+
+5. Import icons and theme in styles.scss
+
+  // styles.scss
+  ```scss
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+	@import '~material-design-icons/iconfont/material-icons.css';
+  ```
+
+6. Change topnav markup
+
+  // topnav.component.html
+  ```html
+  <md-toolbar color="primary">
+    <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
+    <button md-raised-button color="primary" [routerLink]="['/blog']">Blog<md-icon>list</md-icon></button>
+    <button md-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard<md-icon>dashboard</md-icon></button>
+  </md-toolbar>
+  ```
+
+  
