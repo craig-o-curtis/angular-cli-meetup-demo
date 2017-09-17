@@ -2,7 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.2.
 
-The following are the steps according to commit how the app was created.
+The following are the steps according to commit how this app was created.
+This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and ngx-toastrs.
 
 ## Commit Step-01-HMR
 
@@ -22,8 +23,7 @@ The following are the steps according to commit how the app was created.
   ng new myapp --routing --style scss --prefix craigc --dry-run
   ng new myapp --routing --style scss --prefix craigc -d
   ng new myapp --routing --style scss --prefix craigc
-  cd myapp
-  code .
+  cd myapp && code .
   ```
 
 ### 3. Confirm styles and prefix
@@ -62,7 +62,7 @@ The following are the steps according to commit how the app was created.
   </body>
   ```
 
-### 4. Add environments/environment.hmr.ts
+### 4. Add `environments/environment.hmr.ts`
 
   **command line**
   ```bash
@@ -93,7 +93,7 @@ The following are the steps according to commit how the app was created.
   }
   ```
 
-### 5. Update .angular-cli.json with new enviroments
+### 5. Update `.angular-cli.json` with new enviroments
 
   **.angular-cli.json**
   ```json
@@ -106,7 +106,7 @@ The following are the steps according to commit how the app was created.
     }
   ```
 
-### 6. Add new npm run hmr script in package.json
+### 6. Add new `npm run hmr` script in `package.json`
 
   **package.json**
   ```json
@@ -132,7 +132,7 @@ The following are the steps according to commit how the app was created.
 
 ## Commit Step-02-Assets
 
-### 1. Move favicon to assets folder
+### 1. Move `favicon.ico` to `assets` folder
 
 ### 2. Add .angular-cli.json glob pattern
 
@@ -181,7 +181,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g c blog --style=scss -ve=Emulated
   ```
 
-### 2. Setup default routing in app-routing.module
+### 2. Setup default routing in `app-routing.module`
 
   **app-routing.module.ts**
   ```ts
@@ -191,7 +191,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ];
   ```
 
-### 3. Add only <router-outlet> tags to main.component.html and app.component.html
+### 3. Add only `<router-outlet>` tags to `main.component.html` and app.component.html
 
   **main.component.html**
   ```html
@@ -203,7 +203,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   <router-outlet></router-outlet>
   ```
 
-### 4. Add child routes to main-routing.module.ts
+### 4. Add child routes to `main-routing.module.ts`
 
   **main-routing.module.ts**
   ```ts
@@ -229,9 +229,9 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g c main/topnav --export --style=scss -ve=Emulated
   ```
 
-### 2. Add RouterModule to topnav.module.ts
+### 2. Add `RouterModule` to `topnav.module.ts`
 
-  **main/topnave.module.ts**
+  **main/topnav.module.ts**
   ```ts
   ...
   import { RouterModule } from '@angular/router';
@@ -242,7 +242,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ],
   ```
 
-### 3. Add [routerLink] to main/topnav.component.html
+### 3. Add `[routerLink]` to `main/topnav.component.html`
 
   **main/topnav.component.html**
   ```html
@@ -251,7 +251,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   <a [routerLink]="['/blog']">BLOG</a>
   ```
 
-### 4. Add <craigc-topnav> tag to main.component.html
+### 4. Add `<craigc-topnav>` tag to `main.component.html`
 
   **main.component.html**
   ```html
@@ -288,7 +288,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   <a [routerLink]="['/dashboard']">DASHBOARD</a>
   ```
 
-### 3. Quick generate interal dashboard/repos modue and component
+### 3. Quick generate interal dashboard/repos module and component
 
   **command line**
   ```bash
@@ -306,7 +306,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g s dashboard/repos -m repos
   ```
 
-### 5. Add HttpClientModule to repos.module.ts
+### 5. Add `HttpClientModule` to `repos.module.ts`
 
   **repos.module.ts**
   ```ts
@@ -351,7 +351,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   }
   ```
 
-### 7. Add ReposService to repos.component.ts
+### 7. Add `ReposService` to `repos.component.ts`
 
   **repos.component.ts**
   ```ts
@@ -373,7 +373,7 @@ Note - Current bug - default generates css file, need to specify with style flag
     ...
   ```
 
-### 8. Add markup to repos.component.html
+### 8. Add markup to `repos.component.html`
 
   **repos.component.html**
   ```html
@@ -382,7 +382,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   </div>
   ```
 
-### 9. Add <craigc-repos> tag to dashboard.component.hmtl
+### 9. Add `<craigc-repos>` tag to `dashboard.component.hmtl`
 
   **dashboard.component.html**
   ```html
@@ -391,18 +391,16 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ## Commit Step-07-Angular-Material
 
-### 1. Install Angular Material
+### 1. Install `Angular Material`
 
   **command line**
   ```bash
-  npm install --save @angular/material@latest
-  npm install --save @angular/cdk@latest
-  npm install --save material-design-icons
+  npm install --save @angular/material@latest @angular/cdk@latest material-design-icons
   ng -v // check version (4.4.1)
   npm install --save @angular/animations@4.4.1
   ```
 
-### 2. Generate a SharedModule to house MaterialModule
+### 2. Generate a `SharedModule` to house `MaterialModule`
 
   **command line**
   ```bash
@@ -410,7 +408,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g m shared -m app
   ```
 
-### 3. Manually add BroswerAnimationsModule, export this and MaterialModule
+### 3. Manually add `BroswerAnimationsModule`, export this and `MaterialModule`
 
   **shared.module.ts**
   ```ts
@@ -434,9 +432,9 @@ Note - Current bug - default generates css file, need to specify with style flag
   export class SharedModule { }
   ```
 
-### 4. Import SharedModule into topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts
+### 4. Import `SharedModule` into `topnav.module.ts`, `main.module.ts`, `home.module.ts`, `blog.module.ts`, `dashboard.module.ts`, `repos.module.ts`
   
-  **topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts**
+  **topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts, repos.module.ts**
   ```ts
   import { SharedModule } from '../../shared/shared.module';
   ...
@@ -446,7 +444,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 	],
   ```
 
-### 5. Import icons and theme in styles.scss
+### 5. Import icons and theme in `styles.scss`
 
   **styles.scss
   ```scss
@@ -467,14 +465,14 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ## Commit Step-08-HammerJS-Support
 
-### 1. Install hammerjs
+### 1. Install `hammerjs`
 
   **command line**
   ```bash
   npm install --save hammerjs
   ```
 
-### 2. Setup HammerJS configuration in shared.module.ts
+### 2. Setup `hammerjs` configuration in `shared.module.ts`
 
   **shared.module.ts**
   ```ts
@@ -496,7 +494,7 @@ Note - Current bug - default generates css file, need to specify with style flag
     ],
   ```
 
-### 3. Refactor main.component.html to have md-sidenav-container
+### 3. Refactor `main.component.html` to have a `<md-sidenav-container>`
 
   **main.component.html**
   ```html
@@ -511,11 +509,11 @@ Note - Current bug - default generates css file, need to specify with style flag
   </md-sidenav-container>
   ```
 
-### 4. Use ViewChild API inside main.component.ts
+### 4. Use `ViewChild` API inside `main.component.ts`
 
   **main.component.ts**
   ```ts
-  import { Component, OnInit, ViewChild } from '@angular/core';
+  import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
   import { MdSidenav } from '@angular/material';
   ...
   export class MainComponent implements OnInit {
@@ -530,7 +528,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   }
   ```
 
-  ### 5. Upudate main.component.html for event litener
+  ### 5. Update `main.component.html` for event listener
   
   **main.component.html**
   ```html
@@ -550,7 +548,7 @@ Note - Current bug - default generates css file, need to specify with style flag
     </button>
   ```
 
-### 7. Create Output and Event Emitter inside topnav.component.ts
+### 7. Create `Output` and `Event Emitter` inside `topnav.component.ts`
 
   **topnav.component.ts**
   ```ts
@@ -582,8 +580,9 @@ Note - Current bug - default generates css file, need to specify with style flag
   **styles.scss**
   ```scss
   body { 
-    margin: 0 
+    margin: 0;
   }
+  
 	md-sidenav-container {
 		min-height: 100vh;
 	}
@@ -595,14 +594,14 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ## Commit Step-09-@angular/flex-layout
 
-### 1. Install @angular/flex-layout
+### 1. Install `@angular/flex-layout`
 
   **command line**
   ```bash
   npm install --save @angular/flex-layout@latest
   ```
 
-### 2. Import/Export into SharedModule
+### 2. Import/Export into `SharedModule`
 
   **shared.module.ts**
   ```ts
@@ -619,7 +618,15 @@ Note - Current bug - default generates css file, need to specify with style flag
   ],
   ```
 
-### 3. Refactor topnav.component.html
+### 3. Refactor `topnav.component.ts` and `topnav.component.html`
+
+  **topnav.component.ts**
+  ```ts
+  ...
+  export class HomeComponent implements OnInit {
+    boxes = [{id: 1}, {id: 2}, {id: 3}, {id: 4}, {id: 5}, {id: 6}, {id: 7}, {id: 8}];
+    ...
+  ```
 
   **topnav.component.html**
   ```html
@@ -640,7 +647,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   </md-toolbar>
   ```
 
-### 4. Refactor home.component.html to use Flex-Layout Responsive API
+### 4. Refactor `home.component.html` to use `@angular/flex-Layout` responsive API
 
   **home.component.html**
   ```html
@@ -677,7 +684,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ## Commit Step-10-Basscss
 
-### 1. Install Basscss modules
+### 1. Install `Basscss` modules
 
   **command line**
   ```bash
@@ -706,7 +713,13 @@ Note - Current bug - default generates css file, need to specify with style flag
   ...
   <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30"
     class="example-card my2 mx1"
-    class.gt-xs="my3 mx0
+    class.gt-xs="my3 mx0">
+  ```
+
+  **Restart server**
+  ```bash
+  [Ctrl] + C
+  npn run hmr
   ```
 
 ## Commit Step-11-Snazz-up-Repos
@@ -749,7 +762,7 @@ Note - Current bug - default generates css file, need to specify with style flag
             <a md-button [href]="repo.html_url" target="_blank">
               <md-icon>link</md-icon>
             </a>
-            <a [href]="repo.url">{{ repo.url }}</a>
+            <a [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a>
             <p *ngIf="repos.language">Language: {{ repos.language }}</p>
           </div>
         </md-tab>
@@ -758,3 +771,61 @@ Note - Current bug - default generates css file, need to specify with style flag
 
   </div>
   ```
+
+
+## Commit Step-12-Toastrs
+
+1. Install `ngx-toastr`
+
+  **command line**
+  ```bash
+  npm install --save ngx-toastr @angular/animations
+  ```
+
+2. Add css path to styles array in `.angular-cli.json`
+  // .angular-cli.json
+  ```json
+  "styles": [
+    ...
+    "../node_modules/ngx-toastr/toastr.css"
+  ],
+  ```
+
+3. Add `ToastrModule` to `shared.module.ts`
+
+  // shared.module.ts
+  ```ts
+  ...
+  import { ToastrModule } from 'ngx-toastr';
+  ...
+    imports: [
+      ...
+      ToastrModule.forRoot()
+    ]
+  ```
+
+4. Hook up `ToastrService` to `repos.service.ts`
+
+  // repos.service.ts
+  ```ts
+  ...
+  import { ToastrService } from 'ngx-toastr';
+  ...
+    constructor(
+      private _repoService: ReposService,
+      private _toastr: ToastrService
+    ) { }
+
+    ngOnInit() {
+      this._repoService.getRepos()
+      .subscribe( repos => {
+        this._toastr.success('Yes', 'You connected to Github!');
+        this.repos = repos.sort( (repo, nextRepo) => ( repo.name > nextRepo.name) ? 1 : -1 );
+      }, error => {
+        this._toastr.error('Sorry', 'You maxed out Github\'s API calls for the hour!');
+        this.errorMessage = <any>error.message;
+      });
+    }
+  ```
+
+5. Stop server and rerun `npm run hmr`.

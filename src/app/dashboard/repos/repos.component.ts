@@ -18,11 +18,8 @@ export class ReposComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this._repoService.getRepos()
     .subscribe( repos => {
-      // this.repos = repos;
-      // this.repos.sort( (repo, nextRepo) => ( repo.name > nextRepo.name) ? 1 : -1 );
       this._toastr.success('Yes', 'You connected to Github!');
       this.repos = repos.sort( (repo, nextRepo) => ( repo.name > nextRepo.name) ? 1 : -1 );
     }, error => {
