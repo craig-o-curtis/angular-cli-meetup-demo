@@ -32,7 +32,8 @@
         "../node_modules/basscss-margin/index.css",
         "../node_modules/basscss-padding/index.css",
         "../node_modules/basscss-position/index.css",
-        "../node_modules/basscss-utility-typography/index.css"
+        "../node_modules/basscss-utility-typography/index.css",
+        "../node_modules/ngx-toastr/toastr.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

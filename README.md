@@ -21,7 +21,9 @@ The following are the steps according to commit how the app was created.
   ```bash
   ng new myapp --routing --style scss --prefix craigc --dry-run
   ng new myapp --routing --style scss --prefix craigc -d
+  ng new myapp --routing --style scss --prefix craigc
   cd myapp
+  code .
   ```
 
 ### 3. Confirm styles and prefix
@@ -64,7 +66,7 @@ The following are the steps according to commit how the app was created.
 
   **command line**
   ```bash
-  touch environments/environment.hmr.ts
+  touch src/environments/environment.hmr.ts
   ```
 
   **environment.hmr.ts**
@@ -179,9 +181,9 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g c blog --style=scss -ve=Emulated
   ```
 
-### 2. Setup default routing in main-routing.module
+### 2. Setup default routing in app-routing.module
 
-  **main-routing.module.ts**
+  **app-routing.module.ts**
   ```ts
   ...
   const routes: Routes = [
@@ -196,7 +198,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   <router-outlet></router-outlet>
   ```
 
-  **app.component.htm**
+  **app.component.html**
   ```html
   <router-outlet></router-outlet>
   ```
