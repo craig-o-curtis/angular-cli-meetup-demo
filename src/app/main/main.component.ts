@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdSidenav } from '@angular/material';
 
 @Component({
   selector: 'craigc-main',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: MdSidenav;
 
   constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
+  toggleSidenav($event): void {
+    this.sidenav.opened ? this.sidenav.close() : this.sidenav.open();
   }
-
 }

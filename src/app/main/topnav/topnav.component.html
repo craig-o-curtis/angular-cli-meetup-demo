@@ -1,4 +1,11 @@
 <md-toolbar color="primary">
+
+  <button md-fab
+		color="primary"
+		(click)="toggleNav()">
+		<md-icon>menu</md-icon>
+  </button>
+
   <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
   <button md-raised-button color="primary" [routerLink]="['/blog']">Blog<md-icon>list</md-icon></button>
   <button md-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard<md-icon>dashboard</md-icon></button>

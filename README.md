@@ -372,7 +372,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ## Commit Step-07-Angular-Material
 
-1. Install Angular Materia
+1. Install Angular Material
 
   ```bash
   npm install --save @angular/material@latest
@@ -442,4 +442,124 @@ Note - Current bug - default generates css file, need to specify with style flag
   </md-toolbar>
   ```
 
+## Commit Step-08-HammerJS-Support
+
+1. Install hammerjs
+
+  ```bash
+  npm install --save hammerjs
+  ```
+
+2. Setup HammerJS configuration in shared.module.ts
+
+  // shared.module.ts
+  ```ts
+  ...
+  import 'hammerjs';
+  import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
+  export class MyHammerConfig extends HammerGestureConfig  {
+		overrides = <any>{
+			'swipe': {velocity: 0.4, threshold: 20}
+		};
+	}
+  ...
+    providers: [
+      {
+        provide: HAMMER_GESTURE_CONFIG,
+        useClass: MyHammerConfig
+      }
+    ],
+  ```
+
+3. Refactor main.component.html to have md-sidenav-container
+
+  // main.component.html
+  ```html
+  <md-sidenav-container>
+    <md-sidenav #sidenav
+      (swipeleft)="sidenav.close()">
+      Sidenav
+    </md-sidenav>
+
+    <craigc-topnav></craigc-topnav>
+    <router-outlet></router-outlet>
+  </md-sidenav-container>
+  ```
+
+4. Use ViewChild API inside main.component.ts
+
+  // main.component.ts
+  ```ts
+  import { Component, OnInit, ViewChild } from '@angular/core';
+  import { MdSidenav } from '@angular/material';
+  ...
+  export class MainComponent implements OnInit {
+    @ViewChild('sidenav') sidenav: MdSidenav;
+    
+    constructor() { }
+    ngOnInit() { }
+    
+    toggleSidenav($event): void {
+      this.sidenav.opened ? this.sidenav.close() : this.sidenav.open();
+    }
+  }
+  ```
+
+  5. Upudate main.component.html for event litener
   
+  // main.component.html
+  ```html
+  ...
+    <craigc-topnav (menuClicked)="toggleSidenav($event)"></craigc-topnav>
+  ```
+
+6. Update topnav to have menu button
+
+  // topnav.component.html
+  ```html
+  ...
+    <button md-fab
+      color="primary"
+      (click)="toggleNav()">
+      <md-icon>menu</md-icon>
+    </button>
+  ```
+
+7. Create Output and Event Emitter inside topnav.component.ts
+
+  // topnav.component.ts
+  ```ts
+  import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+  @Component({
+    selector: 'craigc-topnav',
+    templateUrl: './topnav.component.html',
+    styleUrls: ['./topnav.component.scss']
+  })
+  export class TopnavComponent implements OnInit {
+    @Output() menuClicked: EventEmitter<string> = new EventEmitter<string>();
+
+    constructor() { }
+    ngOnInit() { }
+
+    onMenuClick(): void {
+      this.menuClicked.emit('clicked');
+    }
+    toggleNav(): void {
+      this.onMenuClick();
+    }
+  }
+  ```
+
+8. Styles Cleanup
+
+  // styles.scss
+  ```scss
+  body { 
+    margin: 0 
+  }
+	md-sidenav-container {
+		min-height: 100vh;
+	}
+  ```

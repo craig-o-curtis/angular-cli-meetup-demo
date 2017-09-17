@@ -3,3 +3,9 @@
 @import '~material-design-icons/iconfont/material-icons.css';
 
 
+body {
+  margin: 0
+}
+md-sidenav-container {
+  min-height: 100vh;
+}

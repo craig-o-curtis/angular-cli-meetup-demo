@@ -1,5 +1,10 @@
 
+<md-sidenav-container>
+  <md-sidenav #sidenav
+    (swipeleft)="sidenav.close()">
+    SidenavSidenavSidenavSidenavSidenavSidenav
+  </md-sidenav>
 
-<craigc-topnav></craigc-topnav>
-
-<router-outlet></router-outlet>
+  <craigc-topnav (menuClicked)="toggleSidenav($event)"></craigc-topnav>
+  <router-outlet></router-outlet>
+</md-sidenav-container>
