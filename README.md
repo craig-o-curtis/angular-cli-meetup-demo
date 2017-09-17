@@ -705,3 +705,53 @@ Note - Current bug - default generates css file, need to specify with style flag
     class="example-card my2 mx1"
     class.gt-xs="my3 mx0
   ```
+
+## Commit Step-11-Snazz-up-Repos
+
+1. Refactor Repos
+
+  // repos.component.html
+  ```html
+  <div *ngIf="repos && repos.length">
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h3>Total Repos: {{repos.length }}</h3>
+
+      <md-expansion-panel color="primary">
+          <md-expansion-panel-header>
+            <md-panel-title>
+              About this Author
+            </md-panel-title>
+          </md-expansion-panel-header>
+          <div fxLayout="column" fxLayoutAlign="center stretch">
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <h1>{{ repos[0].owner.login }}</h1>
+              <a [href]="repos[0].html_url" target="_blank" md-fab color="accent">
+                <md-icon>link</md-icon>
+              </a>
+            </div>
+
+            <img fxFlex="25" class="" [src]="repos[0].owner.avatar_url" [alt]="" />
+          </div>
+        </md-expansion-panel>
+    </div>
+
+    <div>
+      <md-tab-group>
+        <md-tab label="{{ repo.name }}" *ngFor="let repo of repos">
+          <div class="p2">
+            <h1>{{ repo.name }}</h1>
+            <h3>Created at: {{ repo.created_at | date }}</h3>
+            <p>Description: {{ repo.description }}</p>
+            <a md-button [href]="repo.html_url" target="_blank">
+              <md-icon>link</md-icon>
+            </a>
+            <a [href]="repo.url">{{ repo.url }}</a>
+            <p *ngIf="repos.language">Language: {{ repos.language }}</p>
+          </div>
+        </md-tab>
+      </md-tab-group>
+    </div>
+
+  </div>
+  ```

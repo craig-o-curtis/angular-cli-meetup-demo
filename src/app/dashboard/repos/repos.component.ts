@@ -18,6 +18,7 @@ export class ReposComponent implements OnInit {
     .subscribe( repos => {
       // this.repos = repos;
       // this.repos.sort( (repo, nextRepo) => ( repo.name > nextRepo.name) ? 1 : -1 );
+      console.log(repos);
       this.repos = repos.sort( (repo, nextRepo) => ( repo.name > nextRepo.name) ? 1 : -1 );
     }, error => {
       this.errorMessage = <any>error.message;
