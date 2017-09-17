@@ -8,6 +8,7 @@ The following are the steps according to commit how the app was created.
 
 1. (Un)Install Angular-CLI
 
+  // command line
   ```bash
   npm uninstall -g @angular/cli
   npm install -g @angular/cli@latest
@@ -16,6 +17,7 @@ The following are the steps according to commit how the app was created.
 
 2. Generate project
 
+  // command line
   ```bash
   ng new myapp --routing --style scss --prefix craigc --dry-run
   ng new myapp --routing --style scss --prefix craigc -d
@@ -24,8 +26,8 @@ The following are the steps according to commit how the app was created.
 
 3. Confirm styles and prefix
 
-  ```scss
-  // .angular-cli.scss
+  // .angular-cli.json
+  ```json
   ...
   "styles": [
     "styles.scss"
@@ -60,6 +62,7 @@ The following are the steps according to commit how the app was created.
 
 4. Add environments/environment.hmr.ts
 
+  // command line
   ```bash
   touch environments/environment.hmr.ts
   ```
@@ -99,7 +102,7 @@ The following are the steps according to commit how the app was created.
       "hmr": "environments/environment.hmr.ts",
       "prod": "environments/environment.prod.ts"
     }
-    ```
+  ```
 
 6. Add new npm run hmr script in package.json
 
@@ -130,6 +133,7 @@ The following are the steps according to commit how the app was created.
 1. Move favicon to assets folder
 
 2. Add .angular-cli.json glob pattern
+
   // .angular-cli.json
   ```json
   ...
@@ -143,6 +147,7 @@ The following are the steps according to commit how the app was created.
 
 1. Generate a main module
 
+  // command line
   ```bash
   ng g m main --dry-run
   OR
@@ -154,6 +159,7 @@ The following are the steps according to commit how the app was created.
 
 Note - Current bug - default generates css file, need to specify with style flag. Opened up [Github Issue #7715](https://github.com/angular/angular-cli/issues/7715).
 
+  // command line
   ```bash
   ng g c main -d // confirm generated to correct path
   ng g c main -m main --export --style=scss
@@ -163,6 +169,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 1. Generate home and blog modules and components
 
+  // command line
   ```bash
   ng g m home -d
   ng g m home -m main
@@ -212,6 +219,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 1. Generate a topnav module and component into main
 
+  // command line
   ```bash
   ng g m main/topnav -d
   ng g m main/topnav -m main
@@ -255,6 +263,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 1. Guickly generate a dashboard module and component
 
+  // command line
   ```bash
   ng g m dashboard -d
   ng g m dashboard -m main
@@ -279,6 +288,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 3. Quick generate interal dashboard/repos modue and component
 
+  // command line
   ```bash
   ng g m dashboard/repos -d // CAREFUL - module not included...
   ng g m dashboard/repos -m dashboard
@@ -288,12 +298,15 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 4. Generate a repos service
 
+  // command line
   ```bash
   ng g s dashboard/repos -d
   ng g s dashboard/repos -m repos
   ```
 
 5. Add HttpClientModule to repos.module.ts
+
+  // repos.module.ts
   ```ts
   ...
   // import { HttpClientModule } from '@angular/common/http/src/module'; // previous import
@@ -307,6 +320,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```
 
 6. Build the Repos Service
+
   // repos.service.ts
   ```ts
   import { Injectable } from '@angular/core';
@@ -336,6 +350,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```
 
 7. Add ReposService to repos.component.ts
+
   // repos.component.ts
   ```ts
   ...
@@ -357,6 +372,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```
 
 8. Add markup to repos.component.html
+
   // repos.component.html
   ```html
   <div *ngFor="let repo of repos">
@@ -365,6 +381,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```
 
 9. Add <craigc-repos> tag to dashboard.component.hmtl
+
   // dashboard.component.html
   ```html
   <craigc-repos></craigc-repos>
@@ -374,6 +391,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 1. Install Angular Material
 
+  // command line
   ```bash
   npm install --save @angular/material@latest
   npm install --save @angular/cdk@latest
@@ -383,12 +401,14 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```
 2. Generate a SharedModule to house MaterialModule
 
+  // command line
   ```bash
   ng g m shared -d
   ng g m shared -m app
   ```
 
 3. Manually add BroswerAnimationsModule, export this and MaterialModule
+
   // shared.module.ts
   ```ts
   import { NgModule } from '@angular/core';
@@ -446,6 +466,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 1. Install hammerjs
 
+  // command line
   ```bash
   npm install --save hammerjs
   ```
@@ -563,3 +584,90 @@ Note - Current bug - default generates css file, need to specify with style flag
 		min-height: 100vh;
 	}
   ```
+
+9. Test swiping left action
+// should close sidebar
+
+
+## Commit Step-09-@angular/flex-layout
+
+1. Install @angular/flex-layout
+
+  // command line
+  ```bash
+  npm install --save @angular/flex-layout@latest
+  ```
+
+2. Import/Export into SharedModule
+
+  // shared.module.ts
+  ```ts
+  ...
+  import { FlexLayoutModule } from '@angular/flex-layout';
+  ...
+  imports: [
+    ...
+    FlexLayoutModule
+  ],
+  exports: [
+    ...
+    FlexLayoutModule
+  ],
+  ```
+
+3. Refactor topnav.component.html
+
+  // topnav.component.html
+  ```html
+  <md-toolbar color="primary">
+    <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
+      <button md-fab
+        color="primary"
+        (click)="toggleNav()">
+        <md-icon>menu</md-icon>
+      </button>
+
+      <div>
+        <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
+        <button md-raised-button color="primary" [routerLink]="['/blog']">Blog<md-icon>list</md-icon></button>
+        <button md-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard<md-icon>dashboard</md-icon></button>
+      </div>
+    </div>
+  </md-toolbar>
+  ```
+
+4. Refactor home.component.html to use Flex-Layout Responsive API
+
+  // home.component.html
+  ```html
+  <div fxLayout="column"
+    fxLayout.gt-xs="row"
+    fxLayoutAlign="space-around stretch"
+    fxLayoutAlign.gt-xs="space-around center"
+    fxLayoutWrap
+    class="container">
+    <!-- <div *ngFor="let box of boxes" fxFlex="30" class="box">1</div> -->
+
+    <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30" class="example-card">
+      <md-card-header>
+        <div md-card-avatar class="example-header-image"></div>
+        <md-card-title>Shiba Inu</md-card-title>
+        <md-card-subtitle>Dog Breed</md-card-subtitle>
+      </md-card-header>
+      <img md-card-image [src]="'http://lorempixel.com/400/200/city/' + box.id" alt="Photo of a Shiba Inu">
+      <md-card-content>
+        <p>
+          {{ box.id}}---
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+          bred for hunting.
+        </p>
+      </md-card-content>
+      <md-card-actions fxLayout="row" fxLayoutAlign="space-around center">
+        <button md-raised-button color="warn">LIKE</button>
+        <button md-raised-button color="accent">SHARE</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+  ```
+
