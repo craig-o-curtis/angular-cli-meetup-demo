@@ -162,7 +162,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   // command line
   ```bash
   ng g c main -d // confirm generated to correct path
-  ng g c main -m main --export --style=scss
+  ng g c main -m main --export --style=scss -ve=Emulated
   ```
 
 ## Commit Step-04-Child-Routes
@@ -173,10 +173,10 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```bash
   ng g m home -d
   ng g m home -m main
-  ng g c home --style=scss
+  ng g c home --style=scss -ve=Emulated
   ng g m blog -d
   ng g m blog -m main
-  ng g c blog --style=scss
+  ng g c blog --style=scss -ve=Emulated
   ```
 
 2. Setup default routing in main-routing.module
@@ -224,7 +224,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g m main/topnav -d
   ng g m main/topnav -m main
   ng g c main/topnav -d
-  ng g c main/topnav --export --style=scss
+  ng g c main/topnav --export --style=scss -ve=Emulated
   ```
 
 2. Add RouterModule to topnav.module.ts
@@ -268,7 +268,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g m dashboard -d
   ng g m dashboard -m main
   ng g c dashboard -d
-  ng g c dashboard --style=scss
+  ng g c dashboard --style=scss -ve=Emulated
   ```
 
 2. Quick hookup as another child route
@@ -293,7 +293,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ng g m dashboard/repos -d // CAREFUL - module not included...
   ng g m dashboard/repos -m dashboard
   ng g c dashboard/repos -d
-  ng g c dashboard/repos --export --style=scss
+  ng g c dashboard/repos --export --style=scss -ve=Emulated
   ```
 
 4. Generate a repos service
@@ -551,12 +551,13 @@ Note - Current bug - default generates css file, need to specify with style flag
 
   // topnav.component.ts
   ```ts
-  import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+  import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
   @Component({
     selector: 'craigc-topnav',
     templateUrl: './topnav.component.html',
-    styleUrls: ['./topnav.component.scss']
+    styleUrls: ['./topnav.component.scss'],
+    encapsulation: ViewEncapsulation.Emulated,
   })
   export class TopnavComponent implements OnInit {
     @Output() menuClicked: EventEmitter<string> = new EventEmitter<string>();
@@ -671,3 +672,36 @@ Note - Current bug - default generates css file, need to specify with style flag
   </div>
   ```
 
+## Commit Step-10-Basscss
+
+1. Install Basscss modules
+
+  // console
+  ```bash
+  npm install --save basscss-padding basscss-margin basscss-position basscss-utility-typography basscss-background-images
+  ```
+
+2. Add to .angular-cli styles array
+  // WARNING - don't trust intellisense path here, must use ../..
+
+  // .angular-cli.json
+  ```json
+  "styles": [
+    "styles.scss",
+    "../node_modules/basscss-background-images/index.css",
+    "../node_modules/basscss-margin/index.css",
+    "../node_modules/basscss-padding/index.css",
+    "../node_modules/basscss-position/index.css",
+    "../node_modules/basscss-utility-typography/index.css"
+  ],
+  ```
+
+3. Test Utility Classes - Margin utility classes
+
+  // home.component.html
+  ```html
+  ...
+  <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30"
+    class="example-card my2 mx1"
+    class.gt-xs="my3 mx0
+  ```

@@ -27,7 +27,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "craigc",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/basscss-background-images/index.css",
+        "../node_modules/basscss-margin/index.css",
+        "../node_modules/basscss-padding/index.css",
+        "../node_modules/basscss-position/index.css",
+        "../node_modules/basscss-utility-typography/index.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

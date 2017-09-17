@@ -1,10 +1,11 @@
 import { ReposService } from './repos.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'craigc-repos',
   templateUrl: './repos.component.html',
-  styleUrls: ['./repos.component.scss']
+  styleUrls: ['./repos.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class ReposComponent implements OnInit {
   repos: any[] = [];
