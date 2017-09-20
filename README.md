@@ -432,9 +432,9 @@ Note - Current bug - default generates css file, need to specify with style flag
   export class SharedModule { }
   ```
 
-### 4. Import `SharedModule` into `topnav.module.ts`, `main.module.ts`, `home.module.ts`, `blog.module.ts`, `dashboard.module.ts`, `repos.module.ts`
+### 4. Import `SharedModule` into `main.module.ts`, `topnav.module.ts`, `main.module.ts`, `home.module.ts`, `blog.module.ts`, `dashboard.module.ts`, `repos.module.ts`
   
-  **topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts, repos.module.ts**
+  **main.module.ts, topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts, repos.module.ts**
   ```ts
   import { SharedModule } from '../../shared/shared.module';
   ...
@@ -620,7 +620,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Refactor `topnav.component.ts` and `topnav.component.html`
 
-  **topnav.component.ts**
+  **home.component.ts**
   ```ts
   ...
   export class HomeComponent implements OnInit {
@@ -659,9 +659,9 @@ Note - Current bug - default generates css file, need to specify with style flag
     class="container">
     <!-- <div *ngFor="let box of boxes" fxFlex="30" class="box">1</div> -->
 
-    <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30" class="example-card">
+    <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30">
       <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
+        <div md-card-avatar></div>
         <md-card-title>Shiba Inu</md-card-title>
         <md-card-subtitle>Dog Breed</md-card-subtitle>
       </md-card-header>
@@ -712,7 +712,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   ```html
   ...
   <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30"
-    class="example-card my2 mx1"
+    class="my2 mx1"
     class.gt-xs="my3 mx0">
   ```
 
@@ -804,9 +804,9 @@ Note - Current bug - default generates css file, need to specify with style flag
     ]
   ```
 
-4. Hook up `ToastrService` to `repos.service.ts`
+4. Hook up `ToastrService` to `repos.component.ts`
 
-  // repos.service.ts
+  // repos.component.ts
   ```ts
   ...
   import { ToastrService } from 'ngx-toastr';
