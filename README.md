@@ -13,6 +13,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   ```bash
   npm uninstall -g @angular/cli
   npm install -g @angular/cli@latest
+  npm list @angular/cli  --depth=0
   ng -v
   ```
 
@@ -28,7 +29,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
 
 ### 3. Confirm styles and prefix
 
-  **.angular-cli.json**
+  **Check .angular-cli.json**
   ```json
   ...
   "styles": [
@@ -41,7 +42,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   }
   ```
 
-  **app.component.ts**
+  **Check app.component.ts**
   ```ts
   ...
   @Component({
@@ -54,7 +55,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   }
   ```
 
-  **index.html**
+  **Check index.html**
   ```html
   ...
   <body>
@@ -69,7 +70,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   touch src/environments/environment.hmr.ts
   ```
 
-  **environment.hmr.ts**
+  **Add environment.hmr.ts**
   ```ts
   export const environment = {
     production: false,
@@ -77,7 +78,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   }
   ```
 
-  **environment.prod.ts**
+  **Update environment.prod.ts**
   ```ts
   export const environment = {
     production: true,
@@ -85,7 +86,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   }
   ```
 
-  **environment.ts**
+  **Update Uenvironment.ts**
   ```ts
   export const environment = {
     production: false,
@@ -95,7 +96,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
 
 ### 5. Update `.angular-cli.json` with new enviroments
 
-  **.angular-cli.json**
+  **Update .angular-cli.json**
   ```json
   ...
     "environmentSource": "environments/environment.ts",
@@ -108,7 +109,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
 
 ### 6. Add new `npm run hmr` script in `package.json`
 
-  **package.json**
+  **Update package.json**
   ```json
   ...
   "scripts": {
@@ -123,7 +124,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
   npm run hmr // check localhost:4200
   ```
 
-  **styles.scss**
+  **Add to styles.scss**
   ```scss
   * {
     background: lime;
@@ -136,7 +137,7 @@ This demo app uses Angular Material, HammerJS, Angular Flex-layout, Basscss, and
 
 ### 2. Add .angular-cli.json glob pattern
 
-  **.angular-cli.json**
+  **Update .angular-cli.json**
   ```json
   ...
   "assets": [
@@ -164,7 +165,7 @@ Note - Current bug - default generates css file, need to specify with style flag
   **command line**
   ```bash
   ng g c main -d // confirm generated to correct path
-  ng g c main -m main --export --style=scss -ve=Emulated
+  ng g c main -m main --style=scss -ve=Emulated
   ```
 
 ## Commit Step-04-Child-Routes
@@ -183,7 +184,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 2. Setup default routing in `app-routing.module`
 
-  **app-routing.module.ts**
+  **Update app-routing.module.ts**
   ```ts
   ...
   const routes: Routes = [
@@ -193,19 +194,19 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Add only `<router-outlet>` tags to `main.component.html` and app.component.html
 
-  **main.component.html**
+  **Replace main.component.html with:**
   ```html
   <router-outlet></router-outlet>
   ```
 
-  **app.component.html**
+  **Replace app.component.html with:**
   ```html
   <router-outlet></router-outlet>
   ```
 
 ### 4. Add child routes to `main-routing.module.ts`
 
-  **main-routing.module.ts**
+  **Update main-routing.module.ts**
   ```ts
   ...
   const routes: Routes = [
@@ -231,7 +232,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 2. Add `RouterModule` to `topnav.module.ts`
 
-  **main/topnav.module.ts**
+  **Update main/topnav.module.ts**
   ```ts
   ...
   import { RouterModule } from '@angular/router';
@@ -244,7 +245,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Add `[routerLink]` to `main/topnav.component.html`
 
-  **main/topnav.component.html**
+  **Add to main/topnav.component.html**
   ```html
   <a [routerLink]="['/']">HOME</a>
   <br />
@@ -253,9 +254,11 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 4. Add `<craigc-topnav>` tag to `main.component.html`
 
-  **main.component.html**
+  **Update main.component.html**
   ```html
   <craigc-topnav></craigc-topnav>
+
+  <router-outlet></router-outlet>
   ```
 
 ### 5. Confirm working in browser
@@ -275,16 +278,17 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 2. Quick hookup as another child route
 
-  **main-routing.module.ts**
+  **Update main-routing.module.ts**
   ```ts
   ...
   // add next route
   { path: 'dashboard', component: DashboardComponent },
   ```
 
-  **add routerLink in topnav.component.html**
+  **Update new routerLink in topnav.component.html**
   ```html
   ...
+  <br />
   <a [routerLink]="['/dashboard']">DASHBOARD</a>
   ```
 
@@ -302,13 +306,13 @@ Note - Current bug - default generates css file, need to specify with style flag
 
   **command line**
   ```bash
-  ng g s dashboard/repos -d
-  ng g s dashboard/repos -m repos
+  ng g s dashboard/repos/repos -d
+  ng g s dashboard/repos/repos -m repos
   ```
 
 ### 5. Add `HttpClientModule` to `repos.module.ts`
 
-  **repos.module.ts**
+  **Update repos.module.ts**
   ```ts
   ...
   // import { HttpClientModule } from '@angular/common/http/src/module'; // previous import
@@ -323,7 +327,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 6. Build the Repos Service
 
-  **repos.service.ts**
+  **Add to repos.service.ts:**
   ```ts
   import { Injectable } from '@angular/core';
   import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -353,7 +357,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 7. Add `ReposService` to `repos.component.ts`
 
-  **repos.component.ts**
+  **Update repos.component.ts**
   ```ts
   ...
   import { ReposService } from './repos.service';
@@ -375,7 +379,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 8. Add markup to `repos.component.html`
 
-  **repos.component.html**
+  **Add to repos.component.html**
   ```html
   <div *ngFor="let repo of repos">
 	  {{ repo | json }}
@@ -384,7 +388,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 9. Add `<craigc-repos>` tag to `dashboard.component.hmtl`
 
-  **dashboard.component.html**
+  **Add to dashboard.component.html**
   ```html
   <craigc-repos></craigc-repos>
   ```
@@ -396,8 +400,8 @@ Note - Current bug - default generates css file, need to specify with style flag
   **command line**
   ```bash
   npm install --save @angular/material@latest @angular/cdk@latest material-design-icons
-  ng -v // check version (4.4.1)
-  npm install --save @angular/animations@4.4.1
+  ng -v // check version (4.4.3 is latest version tested with these steps)
+  npm install --save @angular/animations@4.4.3
   ```
 
 ### 2. Generate a `SharedModule` to house `MaterialModule`
@@ -410,7 +414,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Manually add `BroswerAnimationsModule`, export this and `MaterialModule`
 
-  **shared.module.ts**
+  **Add to shared.module.ts**
   ```ts
   import { NgModule } from '@angular/core';
   import { CommonModule } from '@angular/common';
@@ -434,7 +438,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 4. Import `SharedModule` into `main.module.ts`, `topnav.module.ts`, `main.module.ts`, `home.module.ts`, `blog.module.ts`, `dashboard.module.ts`, `repos.module.ts`
   
-  **main.module.ts, topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts, repos.module.ts**
+  **Update main.module.ts, topnav.module.ts, main.module.ts, home.module.ts, blog.module.ts, dashboard.module.ts, repos.module.ts**
   ```ts
   import { SharedModule } from '../../shared/shared.module';
   ...
@@ -446,15 +450,16 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 5. Import icons and theme in `styles.scss`
 
-  **styles.scss
+  **Add to styles.scss**
   ```scss
   @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 	@import '~material-design-icons/iconfont/material-icons.css';
   ```
 
 ### 6. Change topnav markup
 
-  **topnav.component.html**
+  **Replace topnav.component.html with:**
   ```html
   <md-toolbar color="primary">
     <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
@@ -474,34 +479,50 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 2. Setup `hammerjs` configuration in `shared.module.ts`
 
-  **shared.module.ts**
+  **Replace shared.module.ts with**
   ```ts
-  ...
+  import { NgModule } from '@angular/core';
+  import { CommonModule } from '@angular/common';
+  import { MaterialModule } from '@angular/material';
+  import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   import 'hammerjs';
   import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
   export class MyHammerConfig extends HammerGestureConfig  {
-		overrides = <any>{
-			'swipe': {velocity: 0.4, threshold: 20}
-		};
-	}
-  ...
+    overrides = <any>{
+      'swipe': {velocity: 0.4, threshold: 20}
+    };
+  }
+
+  @NgModule({
+    imports: [
+      CommonModule,
+      MaterialModule,
+      BrowserAnimationsModule
+    ],
+    exports: [
+      MaterialModule,
+      BrowserAnimationsModule
+    ],
     providers: [
       {
         provide: HAMMER_GESTURE_CONFIG,
         useClass: MyHammerConfig
       }
     ],
+    declarations: []
+  })
+  export class SharedModule { }
   ```
 
 ### 3. Refactor `main.component.html` to have a `<md-sidenav-container>`
 
-  **main.component.html**
+  **Replace main.component.html with:**
   ```html
   <md-sidenav-container>
     <md-sidenav #sidenav
       (swipeleft)="sidenav.close()">
-      Sidenav
+      SidenavSidenavSidenavSidenavSidenav
     </md-sidenav>
 
     <craigc-topnav></craigc-topnav>
@@ -511,17 +532,23 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 4. Use `ViewChild` API inside `main.component.ts`
 
-  **main.component.ts**
+  **Replace main.component.ts with:**
   ```ts
   import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
   import { MdSidenav } from '@angular/material';
-  ...
+
+  @Component({
+    selector: 'craigc-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss'],
+    encapsulation: ViewEncapsulation.Emulated
+  })
   export class MainComponent implements OnInit {
     @ViewChild('sidenav') sidenav: MdSidenav;
-    
+
     constructor() { }
     ngOnInit() { }
-    
+
     toggleSidenav($event): void {
       this.sidenav.opened ? this.sidenav.close() : this.sidenav.open();
     }
@@ -530,7 +557,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
   ### 5. Update `main.component.html` for event listener
   
-  **main.component.html**
+  **Update main.component.html**
   ```html
   ...
     <craigc-topnav (menuClicked)="toggleSidenav($event)"></craigc-topnav>
@@ -538,19 +565,22 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 6. Update topnav to have menu button
 
-  **topnav.component.html**
+  **Replace topnav.component.html with:**
   ```html
-  ...
-    <button md-fab
-      color="primary"
-      (click)="toggleNav()">
+  <md-toolbar color="primary">
+    <button md-fab color="primary" (click)="toggleNav()">
       <md-icon>menu</md-icon>
     </button>
+
+    <button md-raised-button color="primary" [routerLink]="['/']">Home<md-icon>home</md-icon></button>
+    <button md-raised-button color="primary" [routerLink]="['/blog']">Blog<md-icon>list</md-icon></button>
+    <button md-raised-button color="primary" [routerLink]="['/dashboard']">Dashboard<md-icon>dashboard</md-icon></button>
+  </md-toolbar>
   ```
 
 ### 7. Create `Output` and `Event Emitter` inside `topnav.component.ts`
 
-  **topnav.component.ts**
+  **Replace topnav.component.ts with:**
   ```ts
   import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
@@ -577,15 +607,18 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 8. Styles Cleanup
 
-  **styles.scss**
+  **Replace styles.scss with:**
   ```scss
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+  @import '~material-design-icons/iconfont/material-icons.css';
+
   body { 
     margin: 0;
   }
-  
-	md-sidenav-container {
-		min-height: 100vh;
-	}
+
+  md-sidenav-container {
+    min-height: 100vh;
+  }
   ```
 
 ### 9. Test swiping left action
@@ -603,7 +636,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 2. Import/Export into `SharedModule`
 
-  **shared.module.ts**
+  **Update shared.module.ts**
   ```ts
   ...
   import { FlexLayoutModule } from '@angular/flex-layout';
@@ -620,7 +653,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Refactor `topnav.component.ts` and `topnav.component.html`
 
-  **home.component.ts**
+  **Update home.component.ts**
   ```ts
   ...
   export class HomeComponent implements OnInit {
@@ -628,7 +661,7 @@ Note - Current bug - default generates css file, need to specify with style flag
     ...
   ```
 
-  **topnav.component.html**
+  **Replace topnav.component.html with:**
   ```html
   <md-toolbar color="primary">
     <div fxFill fxLayout="row" fxLayoutAlign="space-between center">
@@ -649,7 +682,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 4. Refactor `home.component.html` to use `@angular/flex-Layout` responsive API
 
-  **home.component.html**
+  **Replace home.component.html with:**
   ```html
   <div fxLayout="column"
     fxLayout.gt-xs="row"
@@ -657,7 +690,6 @@ Note - Current bug - default generates css file, need to specify with style flag
     fxLayoutAlign.gt-xs="space-around center"
     fxLayoutWrap
     class="container">
-    <!-- <div *ngFor="let box of boxes" fxFlex="30" class="box">1</div> -->
 
     <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30">
       <md-card-header>
@@ -694,7 +726,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 ### 2. Add to .angular-cli styles array
   // WARNING - don't trust intellisense path here, must use ../..
 
-  **.angular-cli.json**
+  **Update .angular-cli.json**
   ```json
   "styles": [
     "styles.scss",
@@ -708,7 +740,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 3. Test Utility Classes - Margin utility classes
 
-  **home.component.html**
+  **Update home.component.html**
   ```html
   ...
   <md-card *ngFor="let box of boxes;trackBy:id" fxFlex="30"
@@ -726,7 +758,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 ### 1. Refactor Repos
 
-  **repos.component.html**
+  **Replace repos.component.html with:**
   ```html
   <div *ngIf="repos && repos.length">
 
@@ -779,11 +811,11 @@ Note - Current bug - default generates css file, need to specify with style flag
 
   **command line**
   ```bash
-  npm install --save ngx-toastr @angular/animations
+  npm install --save ngx-toastr 
   ```
 
 2. Add css path to styles array in `.angular-cli.json`
-  // .angular-cli.json
+  **Update .angular-cli.json**
   ```json
   "styles": [
     ...
@@ -793,7 +825,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 3. Add `ToastrModule` to `shared.module.ts`
 
-  // shared.module.ts
+  **Update shared.module.ts**
   ```ts
   ...
   import { ToastrModule } from 'ngx-toastr';
@@ -806,7 +838,7 @@ Note - Current bug - default generates css file, need to specify with style flag
 
 4. Hook up `ToastrService` to `repos.component.ts`
 
-  // repos.component.ts
+  **Update repos.component.ts**
   ```ts
   ...
   import { ToastrService } from 'ngx-toastr';
